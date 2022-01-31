@@ -11,3 +11,5 @@ Possible ways to enhance the results:
   might start with m, p, s or v which may require 4 additional attempts, so
   finding a 5 character word with most of those possible characters might be
   faster.
+
+* Automatically fetch and install a missing dictionary.
