@@ -33,8 +33,8 @@ dictionary, but "pill" and "that" are. The English dictionary at the
 above website has both.
 
 Once downloaded, extract the contents somewhere and edit the
-`DICT_FILE` line in `solver.py` to point to the location of the index
-file.
+:code:`DICT_FILE` line in :code:`solver.py` to point to the location
+of the index file.
 
 Alternatively, you can install the dictionary through your package
 manager, if available. eg.
@@ -46,8 +46,8 @@ Arch Linux (from AUR):
     $ pikaur -S dict-wikt-en-all
 
 
-The end result is that you shoud have `wikt-en-all.index` installed
-under `/usr/share/dictd/`.
+The end result is that you shoud have :code:`wikt-en-all.index`
+installed under :code:`/usr/share/dictd/`.
 
 Finally, you can just copy this script somewhere into your path and
 give it executable permissions. Alternatively just run:
