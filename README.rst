@@ -27,7 +27,7 @@ Installation
 ------------
 
 Install Python 3.8+, and the English dictionary from
-http://www.dictinfo.com/. Other dictionaries should also work, but may
+`Dictionary info`_. Other dictionaries should also work, but may
 be problematic. eg. "pills", "whose", etc. are not words in a typical
 dictionary, but "pill" and "that" are. The English dictionary at the
 above website has both.
@@ -39,7 +39,8 @@ of the index file.
 Alternatively, you can install the dictionary through your package
 manager, if available. eg.
 
-Arch Linux (from AUR):
+Arch Linux (from AUR)
+^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: console
 
@@ -55,3 +56,5 @@ give it executable permissions. Alternatively just run:
 .. code-block:: console
 
    $ python3 solver.py
+
+.. _`Dictionary info`: https://www.dictinfo.com/
