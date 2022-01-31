@@ -1,0 +1,13 @@
+Possible ways to enhance the results:
+
+* Output results sub-sectioned by words with the most unique characters.
+
+* Categorise words based on popularity.
+  * I may need to write a tool to generate such an index.
+
+* Add an option to test characters with a known-bad submission. ie.
+  For when where there are too many possible answers, add a switch to narrow
+  results down by submission of a word that's known to be invalid. eg. _olar
+  might start with m, p, s or v which may require 4 additional attempts, so
+  finding a 5 character word with most of those possible characters might be
+  faster.
