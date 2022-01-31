@@ -26,7 +26,7 @@ import string
 import sys
 
 
-DICT_FILE = "/usr/share/dictd/wn.index"
+DICT_FILE = "/usr/share/dictd/wikt-en-all.index"
 VOWELS = "aeiou"
 WORD_LENGTH = 5
 
