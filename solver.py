@@ -21,6 +21,7 @@ options. All candidates contain 2 unique vowels.
 """
 
 import argparse
+import os
 import string
 import sys
 
@@ -202,7 +203,17 @@ def main():
         )
         sys.exit(10)
     known = KnownWordle(dictionary, known)
-    print_words_ordered_by_vowel(known.get_candidates_ordered_by_vowel_count())
+    try:
+        print_words_ordered_by_vowel(
+            known.get_candidates_ordered_by_vowel_count()
+        )
+        sys.stdout.flush()
+    except BrokenPipeError:
+        # This handles tools like `head` as per the docs
+        # https://docs.python.org/3/library/signal.html#note-on-sigpipe
+        devnull = os.open(os.devnull, os.O_WRONLY)
+        os.dup2(devnull, sys.stdout.fileno())
+        sys.exit(1)
 
 
 if __name__ == "__main__":
