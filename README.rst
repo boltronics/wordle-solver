@@ -15,11 +15,9 @@ Usage example:
 
  $ ./solver.py -1 r -5 l -a udiceny -s _o_a_
  === 2 ===
- lobar
  molar
  polar
  solar
- volar
  $
 
 
