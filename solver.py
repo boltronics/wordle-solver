@@ -24,9 +24,10 @@ import argparse
 import os
 import string
 import sys
+from pathlib import Path
 
 
-DICT_FILE = "/usr/share/dictd/wikt-en-all.index"
+DICT_FILE = "share/dict.lst"
 VOWELS = "aeiou"
 WORD_LENGTH = 5
 
@@ -189,12 +190,25 @@ def print_words_ordered_by_vowel(word_list):
         print(word)
 
 
+def get_full_path(file_path):
+    """Return a full path to a file
+
+    Converts a relative path based on location of this script.
+    """
+    abs_path = file_path
+    if not abs_path.startswith("/"):
+        script_dir = Path(__file__).parent
+        abs_path = str(script_dir / file_path)
+    return abs_path
+
+
 def main():
     """Begin execution"""
     args = parse_args()
     known = vars(args)
+    dict_path = get_full_path(DICT_FILE)
     try:
-        dictionary = Dictionary(DICT_FILE)
+        dictionary = Dictionary(dict_path)
     except FileNotFoundError as error:
         print(
             f"Cannot load '{error.filename}': {error.strerror}\n\n"

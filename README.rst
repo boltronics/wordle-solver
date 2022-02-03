@@ -26,35 +26,8 @@ Usage example:
 Installation
 ------------
 
-Install Python 3.8+, and the English dictionary from
-`Dictionary info`_. Other dictionaries should also work, but may
-be problematic. eg. "pills", "whose", etc. are not words in a typical
-dictionary, but "pill" and "that" are. The English dictionary at the
-above website has both.
-
-Once downloaded, extract the contents somewhere and edit the
-:code:`DICT_FILE` line in :code:`solver.py` to point to the location
-of the index file.
-
-Alternatively, you can install the dictionary through your package
-manager, if available. eg.
-
-Arch Linux (from AUR)
-^^^^^^^^^^^^^^^^^^^^^
-
-.. code-block:: console
-
-    $ pikaur -S dict-wikt-en-all
-
-
-The end result is that you shoud have :code:`wikt-en-all.index`
-installed under :code:`/usr/share/dictd/`.
-
-Finally, you can just copy this script somewhere into your path and
-give it executable permissions. Alternatively just run:
+Install Python 3.8+, and run solver like so:
 
 .. code-block:: console
 
    $ python3 solver.py
-
-.. _`Dictionary info`: https://www.dictinfo.com/
