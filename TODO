@@ -1,6 +1,11 @@
 Possible ways to enhance the results:
 
-* Output results sub-sectioned by words with the most unique characters.
+* Look at the most common characters of all the possible words
+  remaining, and and order the words based on those containing the
+  highest number of the most popular characters remaining. Focus on
+  ruling those out first, instead of simply focusing on vowels without
+  any result analysis. The intent is to maximise the number of words
+  we can rule out for a given attempt.
 
 * Categorise words based on popularity.
   * I may need to write a tool to generate such an index.
