@@ -7,9 +7,6 @@ Possible ways to enhance the results:
   any result analysis. The intent is to maximise the number of words
   we can rule out for a given attempt.
 
-* Categorise words based on popularity.
-  * I may need to write a tool to generate such an index.
-
 * Add an option to test characters with a known-bad submission. ie.
   For when where there are too many possible answers, add a switch to narrow
   results down by submission of a word that's known to be invalid. eg. _olar
