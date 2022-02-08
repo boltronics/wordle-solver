@@ -165,11 +165,26 @@ def parse_args():
         "--solved",
         metavar="CHARS",
         help=(
-            "5 character string representing solved part of the answer "
-            "(replacing remaining unknowns with an underscore character)"
+            f"{WORD_LENGTH} character string representing solved part "
+            "of the answer (replacing remaining unknowns with an "
+            "underscore character)"
         ),
     )
-    return parser.parse_args()
+    args = parser.parse_args()
+    if "solved" in args and args.solved:
+        if len(args.solved) != 5:
+            parser.error(
+                f"Given solved string length is not {WORD_LENGTH} characters"
+            )
+        if not (
+            (args.solved == "_" * WORD_LENGTH)
+            or args.solved.replace("_", "").isalpha()
+        ):
+            parser.error(
+                "Given solved string is not entirely alphabetic (excluding "
+                "underscores)"
+            )
+    return args
 
 
 def print_words_ordered_by_vowel(word_list):
