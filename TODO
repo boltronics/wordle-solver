@@ -17,7 +17,3 @@ Possible ways to enhance the results:
 * Does not factor into the possibility of a character being used multiple
   times, but a guess only eliminiating one of them. eg. if the answer is
   "robot" but "enjoy" was guessed, only the second "o" will be revealed.
-
-* Option to sort results by Scrabble point values (lowest points first)
-  * See https://en.wikipedia.org/wiki/Scrabble_letter_distributions#English
-  * The vowel count header could change to the point count, reverse ordered.
