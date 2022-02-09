@@ -172,7 +172,7 @@ def parse_args():
     )
     args = parser.parse_args()
     if "solved" in args and args.solved:
-        if len(args.solved) != 5:
+        if len(args.solved) != WORD_LENGTH:
             parser.error(
                 f"Given solved string length is not {WORD_LENGTH} characters"
             )
