@@ -30,6 +30,54 @@ VOWELS = "aeiou"
 WORD_LENGTH = 5
 
 
+class CharacterTracker:
+    """Character tracking class"""
+
+    def __init__(self, absent=None):
+        # Tuples are used to ensure values cannot be modified outside
+        # of getter and setter methods defined here.
+        self._possible = tuple(string.ascii_lowercase)
+        self._impossible = tuple()
+        if absent:
+            self.impossible = absent
+
+    def _set_possible(self, char_list=None, possible=True):
+        """Set self._possible and self._impossible based on list contents"""
+        attrs = ["_possible", "_impossible"]
+        if not possible:
+            attrs = attrs[::-1]
+        setattr(self, attrs[0], tuple(sorted(char_list)))
+        setattr(
+            self,
+            attrs[1],
+            tuple(
+                sorted(
+                    [x for x in string.ascii_lowercase if x not in char_list]
+                )
+            ),
+        )
+
+    @property
+    def possible(self):
+        """Get a tuple of characters known to be possible"""
+        return self._possible
+
+    @possible.setter
+    def possible(self, char_list):
+        """Set characters we know are possible"""
+        self._set_possible(char_list)
+
+    @property
+    def impossible(self):
+        """Get a tuple of characters known to be impossible"""
+        return self._impossible
+
+    @impossible.setter
+    def impossible(self, char_list):
+        """Set characters we know are impossible"""
+        self._set_possible(char_list, False)
+
+
 class Word(str):
     """Word class"""
 
@@ -96,17 +144,28 @@ class Dictionary:
             counter -= 1
         return results
 
+    def get_character_stats(self, exclude_words_with_chars=None):
+        """Return characters and their stats"""
+        stats = {}
+        for word in [
+            w
+            for w in self.words
+            if not any(x in w for x in exclude_words_with_chars)
+        ]:
+            for character in word:
+                stats.setdefault(character, {"word_count": 0})[
+                    "word_count"
+                ] += 1
+        return stats
+
 
 class KnownWordle:
     """Manage known word data"""
 
     def __init__(self, dictionary, known):
         self.dictionary = dictionary
-        self.possible = list(string.ascii_lowercase)
-        if known.get("absent"):
-            self.possible = [
-                x for x in self.possible if x not in list(known["absent"])
-            ]
+        absent_chars = list(known.get("absent") or "") or None
+        self.wordle_chars = CharacterTracker(absent=absent_chars)
         self.wrong_spot = {}
         for i in range(1, WORD_LENGTH + 1):
             self.wrong_spot[i - 1] = list(known.get(f"wrong_spot_{i}") or "")
@@ -136,7 +195,7 @@ class KnownWordle:
         """Get a list of word candidates ordered by unique vowels"""
         results = []
         for word in self.dictionary.get_words_ordered_by_vowel_count(
-            [x for x in string.ascii_lowercase if x not in self.possible]
+            self.wordle_chars.impossible
         ):
             if self.wrong_spot_characters(word):
                 for i, word_char in enumerate(self.solved):

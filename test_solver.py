@@ -1,6 +1,36 @@
+import string
 import unittest
 
 import solver
+
+
+class TestCharacterTracker(unittest.TestCase):
+    def setUp(self):
+        self.possible_chars, self.impossible_chars, self.all_chars = [
+            tuple(string.ascii_lowercase[:3]),
+            tuple(string.ascii_lowercase[3:]),
+            tuple(string.ascii_lowercase),
+        ]
+
+    def test_possible(self):
+        char_tracking = solver.CharacterTracker(self.impossible_chars)
+        self.assertEqual(char_tracking.possible, self.possible_chars)
+
+    def test_impossible(self):
+        char_tracking = solver.CharacterTracker(self.impossible_chars)
+        self.assertEqual(char_tracking.impossible, self.impossible_chars)
+
+    def test_possible_setter(self):
+        char_tracking = solver.CharacterTracker(self.all_chars)
+        char_tracking.possible = self.possible_chars
+        self.assertEqual(char_tracking.possible, self.possible_chars)
+        self.assertEqual(char_tracking.impossible, self.impossible_chars)
+
+    def test_impossible_seter(self):
+        char_tracking = solver.CharacterTracker()
+        char_tracking.impossible = self.impossible_chars
+        self.assertEqual(char_tracking.impossible, self.impossible_chars)
+        self.assertEqual(char_tracking.possible, self.possible_chars)
 
 
 class TestWord(unittest.TestCase):
