@@ -202,6 +202,15 @@ def parse_args():
                 "Given solved string is not entirely alphabetic (excluding "
                 "underscores)"
             )
+        total_wrong_spot = 0
+        for i in range(1, WORD_LENGTH + 1):
+            if f"wrong_spot_{i}" in args and getattr(args, f"wrong_spot_{i}"):
+                total_wrong_spot += len(getattr(args, f"wrong_spot_{i}"))
+        if args.solved.count("_") < total_wrong_spot:
+            parser.error(
+                'More "wrong spot" characters given than there are unsolved '
+                "characters"
+            )
     return args
 
 
