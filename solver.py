@@ -171,6 +171,18 @@ def parse_args():
         ),
     )
     args = parser.parse_args()
+    if "absent" in args and args.absent:
+        if not args.absent.isalpha():
+            parser.error(
+                "Given string of absent characters is not entirely alphabetic"
+            )
+    for i in range(1, WORD_LENGTH + 1):
+        if f"wrong_spot_{i}" in args and getattr(args, f"wrong_spot_{i}"):
+            if not getattr(args, f"wrong_spot_{i}").isalpha():
+                parser.error(
+                    f"Given characters for Wordle character {i} are not "
+                    "entirely alphabetic."
+                )
     if "solved" in args and args.solved:
         if len(args.solved) != WORD_LENGTH:
             parser.error(
