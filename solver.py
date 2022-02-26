@@ -9,11 +9,9 @@ in position 2 and "a" is in position 4.
 
 $ ./solver.py -1 r -5 l -a udiceny -s _o_a_
 === 2 ===
-lobar
 molar
 polar
 solar
-volar
 $
 
 From the results, we can see the answer must be one of these
