@@ -187,7 +187,7 @@ def parse_args():
             if not getattr(args, f"wrong_spot_{i}").isalpha():
                 parser.error(
                     f"Given characters for Wordle character {i} are not "
-                    "entirely alphabetic."
+                    "entirely alphabetic"
                 )
     if "solved" in args and args.solved:
         if len(args.solved) != WORD_LENGTH:
