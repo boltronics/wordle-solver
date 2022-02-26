@@ -120,9 +120,17 @@ class KnownWordle:
 
     def wrong_spot_characters(self, word):
         """Check a word has all "wrong_spot" characters in other positions"""
+        needed_characters = sorted(
+            [y for x in self.wrong_spot.values() for y in x]
+            + [x for x in self.solved if x != "_"]
+        )
         for i, characters in self.wrong_spot.items():
             for character in characters:
-                if character not in word or word[i] == character:
+                total_char_occurances = needed_characters.count(character)
+                if (
+                    word.count(character) < total_char_occurances
+                    or word[i] == character
+                ):
                     return False
         return True
 
@@ -156,8 +164,8 @@ def parse_args():
             f"--wrong-spot-{i}",
             metavar="CHARS",
             help=(
-                "Characters known to exist in the word but are not in "
-                f"position {i}"
+                "Characters known to exist in the word but are not solved or "
+                f"in position {i}"
             ),
         )
     parser.add_argument(
