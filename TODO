@@ -13,7 +13,3 @@ Possible ways to enhance the results:
   might start with m, p, s or v which may require 4 additional attempts, so
   finding a 5 character word with most of those possible characters might be
   faster.
-
-* Does not factor into the possibility of a character being used multiple
-  times, but a guess only eliminiating one of them. eg. if the answer is
-  "robot" but "enjoy" was guessed, only the second "o" will be revealed.
